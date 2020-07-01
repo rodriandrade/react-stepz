@@ -13,7 +13,7 @@ export interface ProgressStep {
   validator?: (payload?: any) => boolean;
 }
 
-export interface useStepProgressProps {
+export interface StepProgressProps {
   steps: ProgressStep[];
   startingStep: number;
   wrapperClass?: string;
@@ -22,7 +22,13 @@ export interface useStepProgressProps {
   contentClass?: string;
 }
 
-export interface StepProgressProps {
+export interface StepProgressReturn {
+  stepForward(): void;
+  stepBackwards(): void;
+  getBarProps: StepProgressBarProps;
+}
+
+export interface StepProgressBarProps {
   state: ProgressStep[];
   currentIndex: number;
   wrapperClass?: string;
