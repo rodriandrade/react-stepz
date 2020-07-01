@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStepProgress, StepProgressBar } from 'react-step-progress';
+import { useStepProgress, StepProgress, StepProgressBar, Step } from 'react-step-progress';
 import 'react-step-progress/dist/index.css';
 
 import './index.css';
@@ -25,35 +25,45 @@ function App() {
     {
       label: 'Step 1',
       name: 'step 1',
-      content: step1Content
     },
     {
       label: 'Step 2',
       name: 'step 2',
-      content: step2Content,
       validator: step2Validator
     },
     {
       label: 'Step 3',
       name: 'step 3',
-      content: step3Content,
       validator: step3Validator,
     },
     {
       label: 'Step 4',
       name: 'step 4',
-      content: step4Content
     }
   ];
 
-  const { stepForward, stepBackwards, getBarProps, currentIndex } = useStepProgress({
+  const { stepForward, stepBackwards, getProps, currentIndex } = useStepProgress({
     steps,
     startingStep: 0,
   });
 
   return (
-    <div class="app">
-      <StepProgressBar {...getBarProps}/>
+    <div className="app">
+      <StepProgress {...getProps} >
+        <StepProgressBar />
+        <Step step={1}>
+          <h1>Hello there</h1>
+        </Step>
+        <Step step={2}>
+          <h1>Next part</h1>
+        </Step>
+        <Step step={3}>
+          <h1>Almost there</h1>
+        </Step>
+        <Step step={4}>
+          <h1>Last step</h1>
+        </Step>
+      </StepProgress>
       <div className="step-buttons">
         <a
           className={`

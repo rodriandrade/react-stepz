@@ -9,11 +9,15 @@ export interface ProgressStep {
   label: string;
   name: string;
   state?: StepStates;
-  content: React.ReactNode;
   validator?: (payload?: any) => boolean;
 }
 
-export interface StepProgressProps {
+export interface StepProgessContextProps {
+  steps?: ProgressStep[];
+  currentStep?: number;
+}
+
+export interface UseStepProgressOptions {
   steps: ProgressStep[];
   startingStep: number;
   wrapperClass?: string;
@@ -22,20 +26,27 @@ export interface StepProgressProps {
   contentClass?: string;
 }
 
-export interface StepProgressReturn {
+export interface UseStepProgressReturn {
   stepForward(): void;
   stepBackwards(): void;
   currentIndex: number;
-  getBarProps: StepProgressBarProps;
+  getProps: StepProgressProps;
+}
+
+export interface StepProgressProps {
+  steps: ProgressStep[];
+  currentStep: number;
 }
 
 export interface StepProgressBarProps {
-  state: ProgressStep[];
-  currentIndex: number;
   wrapperClass?: string;
   progressClass?: string;
   stepClass?: string;
   contentClass?: string;
+}
+
+export interface StepProps {
+  step: number;
 }
 
 export interface ReducerAction {
