@@ -29,6 +29,10 @@ export const useStepProgress = (props: StepProgressProps): StepProgressReturn =>
   }, []);
 
   function stepForward(): void {
+    if (currentIndex === steps.length - 1) {
+      return;
+    }
+
     let isStateValid = true;
     const stepValidator = state[currentIndex].validator;
 
@@ -49,6 +53,10 @@ export const useStepProgress = (props: StepProgressProps): StepProgressReturn =>
   }
 
   function stepBackwards(): void {
+    if (currentIndex === 0) {
+      return;
+    }
+
     dispatch({
       type: 'previous',
       payload: {
