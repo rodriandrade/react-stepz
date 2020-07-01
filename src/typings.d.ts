@@ -25,9 +25,7 @@ declare enum StepStates {
 
 interface ProgressStep {
   label: string;
-  name: string;
   state?: StepStates;
-  content: React.ReactNode;
   validator?: (payload?: any) => boolean;
 }
 

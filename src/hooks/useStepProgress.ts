@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StepProgressProps, StepProgressReturn, StepStates } from '../models';
+import { UseStepProgressOptions, UseStepProgressReturn, StepStates } from '../models';
 
 function stepsReducer(steps: ProgressStep[], action: ReducerAction): ProgressStep[] {
   return steps.map(function (step, i) {
@@ -15,10 +15,10 @@ function stepsReducer(steps: ProgressStep[], action: ReducerAction): ProgressSte
   });
 }
 
-export const useStepProgress = (props: StepProgressProps): StepProgressReturn => {
+export const useStepProgress = (props: UseStepProgressOptions): UseStepProgressReturn => {
   const { steps, startingStep } = props;
 
-  const [state, dispatch] = React.useReducer(stepsReducer, steps);
+  const [stepState, dispatch] = React.useReducer(stepsReducer, steps);
   const [currentIndex, setCurrentIndex] = React.useState(startingStep);
 
   React.useEffect(function () {
@@ -34,7 +34,7 @@ export const useStepProgress = (props: StepProgressProps): StepProgressReturn =>
     }
 
     let isStateValid = true;
-    const stepValidator = state[currentIndex].validator;
+    const stepValidator = stepState[currentIndex].validator;
 
     if (stepValidator) {
       isStateValid = stepValidator();
@@ -71,10 +71,9 @@ export const useStepProgress = (props: StepProgressProps): StepProgressReturn =>
     stepForward,
     stepBackwards,
     currentIndex,
-    getBarProps: {
-      ...props,
-      state,
-      currentIndex
+    getProps: {
+      steps: stepState,
+      currentStep: currentIndex + 1
     }
   };
 };
