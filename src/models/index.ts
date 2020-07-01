@@ -7,7 +7,6 @@ export enum StepStates {
 
 export interface ProgressStep {
   label: string;
-  name: string;
   state?: StepStates;
   validator?: (payload?: any) => boolean;
 }

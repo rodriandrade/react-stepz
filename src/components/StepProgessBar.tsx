@@ -11,7 +11,10 @@ export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
   return (
     <StepProgressContext.Consumer>
       {(context) => {
-        invariant(Object.keys(context).length > 0, 'You cannot use a <StepProgressBar> outside a <StepProgess>');
+        invariant(
+          Object.keys(context).length > 0,
+          'You cannot use a <StepProgressBar> outside a <StepProgess>'
+        );
 
         const { steps } = context;
 
