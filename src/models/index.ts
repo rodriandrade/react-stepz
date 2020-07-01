@@ -11,7 +11,7 @@ export interface ProgressStep {
   validator?: (payload?: any) => boolean;
 }
 
-export interface StepProgessContextProps {
+export interface StepProgressContextProps {
   steps?: ProgressStep[];
   currentStep?: number;
 }

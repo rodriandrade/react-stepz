@@ -1,4 +1,6 @@
-import { createContext } from 'react';
-import { StepProgessContextProps } from '../models';
+import React, { createContext } from 'react';
+import { StepProgressContextProps } from '../models';
 
-export const StepProgressContext = createContext<StepProgessContextProps>({});
+export const StepProgressContext: React.Context<StepProgressContextProps> = createContext<
+  StepProgressContextProps
+>({});
