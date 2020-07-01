@@ -1,12 +1,16 @@
 import * as React from 'react';
 import styles from './styles.module.css';
 
-import { StepStates, ProgressStep, StepProgressProps, ReducerAction } from './models';
+import {
+  useStepProgressProps,
+  StepStates,
+  ProgressStep,
+  StepProgressProps,
+  ReducerAction
+} from './models';
 
 function stepsReducer(steps: ProgressStep[], action: ReducerAction): ProgressStep[] {
-
-  return steps.map(function(step, i) {
-
+  return steps.map(function (step, i) {
     if (i < action.payload.index) {
       return { ...step, state: StepStates.COMPLETED };
     } else if (i === action.payload.index) {
@@ -18,18 +22,9 @@ function stepsReducer(steps: ProgressStep[], action: ReducerAction): ProgressSte
   });
 }
 
-function StepProgressBar(props: StepProgressProps): JSX.Element {
-  const {
-    steps,
-    startingStep,
-    wrapperClass,
-    progressClass,
-    stepClass,
-    contentClass,
-    buttonWrapperClass,
-    primaryBtnClass,
-    secondaryBtnClass
-  } = props;
+const useStepProgress = (props: useStepProgressProps) => {
+  const { steps, startingStep } = props;
+
   const [state, dispatch] = React.useReducer(stepsReducer, steps);
   const [currentIndex, setCurrentIndex] = React.useState(startingStep);
 
@@ -40,7 +35,7 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
     });
   }, []);
 
-  function nextHandler(): void {
+  function stepForward(): void {
     let isStateValid = true;
     const stepValidator = state[currentIndex].validator;
 
@@ -60,7 +55,7 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
     }
   }
 
-  function prevHandler(): void {
+  function stepBackwards(): void {
     dispatch({
       type: 'previous',
       payload: {
@@ -71,24 +66,32 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
     setCurrentIndex(currentIndex - 1);
   }
 
+  return {
+    stepForward,
+    stepBackwards,
+    getBarProps: {
+      ...props,
+      state,
+      currentIndex
+    }
+  };
+};
+
+function StepProgressBar(props: StepProgressProps): JSX.Element {
+  const { wrapperClass, progressClass, state, stepClass, contentClass, currentIndex } = props;
+
   return (
     <div className={`${styles['progress-bar-wrapper']} ${wrapperClass || ''}`}>
       <ul className={`${styles['step-progress-bar']} ${progressClass || ''}`}>
-        {state.map(function(step, i) {
+        {state.map(function (step, i) {
           return (
             <li
               key={i}
-              className={`${
-                styles['progress-step']
-              }${
+              className={`${styles['progress-step']}${
                 step.state === StepStates.COMPLETED ? ` ${styles.completed}` : ''
-              }${
-                step.state === StepStates.CURRENT ? ` ${styles.current}` : ''
-              }${
+              }${step.state === StepStates.CURRENT ? ` ${styles.current}` : ''}${
                 step.state === StepStates.ERROR ? ` ${styles['has-error']}` : ''
-              } ${
-                stepClass || ''
-              }`}
+              } ${stepClass || ''}`}
             >
               {step.state === StepStates.COMPLETED && (
                 <span className={styles['step-icon']}>
@@ -98,7 +101,7 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M1 3.5L4.5 7.5L12 1" stroke="white" stroke-width="1.5"></path>
+                    <path d="M1 3.5L4.5 7.5L12 1" stroke="white" strokeWidth="1.5" />
                   </svg>
                 </span>
               )}
@@ -115,39 +118,8 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
       <div className={`${styles['step-content']} ${contentClass || ''}`}>
         {state[currentIndex].content}
       </div>
-
-      <div className={`${styles['step-buttons']} ${buttonWrapperClass || ''}`}>
-        <a
-          className={`${
-            styles['step-action-btn']
-          } ${
-            styles['action-btn-secondary']
-          } ${
-            currentIndex === 0 ? styles.disabled : ''
-          } ${
-            secondaryBtnClass || ''
-          }`}
-          onClick={prevHandler}
-        >
-          Previous
-        </a>
-        <a
-          className={`${
-            styles['step-action-btn']
-          } ${
-            styles['action-btn-primary']
-          } ${
-            currentIndex === state.length - 1 ? styles.disabled : ''
-          } ${
-            primaryBtnClass || ''
-          }`}
-          onClick={nextHandler}
-        >
-          Next
-        </a>
-      </div>
     </div>
   );
 }
 
-export default StepProgressBar;
+export { useStepProgress, StepProgressBar };

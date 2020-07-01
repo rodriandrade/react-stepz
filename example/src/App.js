@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StepProgressBar from 'react-step-progress';
+import { useStepProgress, StepProgressBar } from 'react-step-progress';
 import 'react-step-progress/dist/index.css';
 
 import './index.css';
@@ -20,37 +20,42 @@ function step3Validator() {
 }
 
 function App() {
+
+  const { stepForward, stepBackwards, getBarProps } = useStepProgress({
+    steps: [
+      {
+        label: 'Step 1',
+        name: 'step 1',
+        content: step1Content
+      },
+      {
+        label: 'Step 2',
+        name: 'step 2',
+        content: step2Content,
+        validator: step2Validator
+      },
+      {
+        label: 'Step 3',
+        name: 'step 3',
+        content: step3Content,
+        validator: step3Validator
+      },
+      {
+        label: 'Step 4',
+        name: 'step 4',
+        content: step4Content
+      }
+    ],
+    startingStep: 0,
+  });
+
   return (
     <div class="app">
-      <StepProgressBar
-        startingStep={0}
-        wrapperClass="progress-wrapper-custom"
-        steps={[
-          {
-            label: 'Step 1',
-            name: 'step 1',
-            content: step1Content
-          },
-          {
-            label: 'Step 2',
-            name: 'step 2',
-            content: step2Content,
-            validator: step2Validator
-          },
-          {
-            label: 'Step 3',
-            name: 'step 3',
-            content: step3Content,
-            validator: step3Validator
-          },
-          {
-            label: 'Step 4',
-            name: 'step 4',
-            content: step4Content
-          }
-        ]}
-      />
+      <StepProgressBar {...getBarProps}/>
+      <button onClick={() => stepForward()}>Next</button>
+      <button onClick={() => stepBackwards()}>Previous</button>
     </div>
+
   );
 }
 

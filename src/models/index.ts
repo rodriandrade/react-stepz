@@ -13,16 +13,22 @@ export interface ProgressStep {
   validator?: (payload?: any) => boolean;
 }
 
-export interface StepProgressProps {
+export interface useStepProgressProps {
   steps: ProgressStep[];
   startingStep: number;
   wrapperClass?: string;
   progressClass?: string;
   stepClass?: string;
   contentClass?: string;
-  buttonWrapperClass?: string;
-  primaryBtnClass?: string;
-  secondaryBtnClass?: string;
+}
+
+export interface StepProgressProps {
+  state: ProgressStep[];
+  currentIndex: number;
+  wrapperClass?: string;
+  progressClass?: string;
+  stepClass?: string;
+  contentClass?: string;
 }
 
 export interface ReducerAction {
