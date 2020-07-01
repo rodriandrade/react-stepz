@@ -25,6 +25,7 @@ export interface StepProgressProps {
 export interface StepProgressReturn {
   stepForward(): void;
   stepBackwards(): void;
+  currentIndex: number;
   getBarProps: StepProgressBarProps;
 }
 

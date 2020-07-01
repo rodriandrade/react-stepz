@@ -62,6 +62,7 @@ export const useStepProgress = (props: StepProgressProps): StepProgressReturn =>
   return {
     stepForward,
     stepBackwards,
+    currentIndex,
     getBarProps: {
       ...props,
       state,

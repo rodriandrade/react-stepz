@@ -2,3 +2,38 @@
   background-color: white;
   height:100vh;
 }
+
+.step-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.step-action-btn {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.action-btn-secondary {
+  border: 1px solid #d1d9eb;
+}
+.action-btn-secondary:hover {
+  background-color: #f3f7ff;
+  box-shadow: 0px 3px 6px 0 rgba(190, 201, 228, 0.3);
+}
+.action-btn-primary {
+  background-color: #397cf6;
+  border: 1px solid #397cf6;
+  color: white;
+}
+.action-btn-primary:hover {
+  background-color: #316ddb;
+  border: 1px solid #316ddb;
+  box-shadow: 0px 3px 6px 0 rgba(57, 124, 246, 0.3);
+}
+.step-action-btn.disabled {
+  pointer-events: none;
+  filter: opacity(0.7);
+  cursor: default;
+}

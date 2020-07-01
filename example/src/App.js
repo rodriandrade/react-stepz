@@ -21,41 +21,60 @@ function step3Validator() {
 
 function App() {
 
-  const { stepForward, stepBackwards, getBarProps } = useStepProgress({
-    steps: [
-      {
-        label: 'Step 1',
-        name: 'step 1',
-        content: step1Content
-      },
-      {
-        label: 'Step 2',
-        name: 'step 2',
-        content: step2Content,
-        validator: step2Validator
-      },
-      {
-        label: 'Step 3',
-        name: 'step 3',
-        content: step3Content,
-        validator: step3Validator
-      },
-      {
-        label: 'Step 4',
-        name: 'step 4',
-        content: step4Content
-      }
-    ],
+  const steps = [
+    {
+      label: 'Step 1',
+      name: 'step 1',
+      content: step1Content
+    },
+    {
+      label: 'Step 2',
+      name: 'step 2',
+      content: step2Content,
+      validator: step2Validator
+    },
+    {
+      label: 'Step 3',
+      name: 'step 3',
+      content: step3Content,
+      validator: step3Validator,
+    },
+    {
+      label: 'Step 4',
+      name: 'step 4',
+      content: step4Content
+    }
+  ];
+
+  const { stepForward, stepBackwards, getBarProps, currentIndex } = useStepProgress({
+    steps,
     startingStep: 0,
   });
 
   return (
     <div class="app">
       <StepProgressBar {...getBarProps}/>
-      <button onClick={() => stepForward()}>Next</button>
-      <button onClick={() => stepBackwards()}>Previous</button>
+      <div className="step-buttons">
+        <a
+          className={`
+            step-action-btn
+            action-btn-secondary
+            ${currentIndex === 0 && 'disabled'}
+          `}
+          onClick={() => stepBackwards()}>
+          Previous
+        </a>
+        <a
+          className={`
+            step-action-btn
+            action-btn-primary
+            ${currentIndex === steps.length - 1 && 'disabled'}
+          `}
+          onClick={() => stepForward()}>
+          Next
+        </a>
+      </div>
     </div>
-
   );
 }
 
