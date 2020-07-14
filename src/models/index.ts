@@ -19,10 +19,6 @@ export interface StepProgressContextProps {
 export interface UseStepProgressOptions {
   steps: ProgressStep[];
   startingStep: number;
-  wrapperClass?: string;
-  progressClass?: string;
-  stepClass?: string;
-  contentClass?: string;
 }
 
 export interface UseStepProgressReturn {
@@ -38,7 +34,7 @@ export interface StepProgressProps {
 }
 
 export interface StepProgressBarProps {
-  wrapperClass?: string;
+  className?: string;
   progressClass?: string;
   stepClass?: string;
   contentClass?: string;

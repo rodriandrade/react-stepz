@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 import { StepProgressBarProps, StepStates } from '../models';
 
 export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
-  const { wrapperClass, progressClass, stepClass } = props;
+  const { className, progressClass, stepClass } = props;
 
   return (
     <StepProgressContext.Consumer>
@@ -23,16 +23,16 @@ export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
         }
 
         return (
-          <div className={`${styles['progress-bar-wrapper']} ${wrapperClass || ''}`}>
+          <div className={`${styles['progress-bar-wrapper']} ${className || ''}`}>
             <ul className={`${styles['step-progress-bar']} ${progressClass || ''}`}>
               {steps.map(function (step, i) {
                 return (
                   <li
                     key={i}
                     className={`${styles['progress-step']}${
-                      step.state === StepStates.COMPLETED ? ` ${styles.completed}` : ''
-                    }${step.state === StepStates.CURRENT ? ` ${styles.current}` : ''}${
-                      step.state === StepStates.ERROR ? ` ${styles['has-error']}` : ''
+                      step.state === StepStates.COMPLETED ? ` ${styles.completed} completed` : ''
+                    }${step.state === StepStates.CURRENT ? ` ${styles.current} active` : ''}${
+                      step.state === StepStates.ERROR ? ` ${styles['has-error']} error` : ''
                     } ${stepClass || ''}`}
                   >
                     {step.state === StepStates.COMPLETED && (
