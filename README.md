@@ -1,9 +1,9 @@
-# Welcome to react-step-progress 👋
+# Welcome to react-stepz 👋
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-> Multi step and dynamic progress indicator for react. Built using typescript, hooks and lots-o'-☕ and lots-o'-❤️ .
+> Hook based Multi step and dynamic progress indicator for react. Built using typescript, hooks and lots-o'-☕ and lots-o'-❤️ .
 > Uses CSS modules so you don't have to worry about your CSS class names clashing with ours
 
 ![React Step Progress demo](react-step-progress-demo.gif)
@@ -11,7 +11,7 @@
 ## Install
 
 ```
-npm install --save react-step-progress
+npm install --save react-stepz
 ```
 
 ## Usage
@@ -74,13 +74,6 @@ function step3Validator() {
 * buttonWrapperClass (`string`) - CSS class name for action buttons wrapper element
 * primaryBtnClass (`string`) - CSS class name for primary themed button
 * secondaryBtnClass (`string`) - CSS class name for secondary themed button
-
-## Author
-
-👤 **Gaurav Saini**
-
-* Github: [@saini-g](https://github.com/saini-g)
-* LinkedIn: [@saini-g](https://linkedin.com/in/saini-g)
 
 ## Show your support
 
