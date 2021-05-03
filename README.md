@@ -1,12 +1,16 @@
-# Welcome to react-stepz 👋
+<h1 align="center">
+  React-Stepz
+</h1>
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+<h4 align="center">Hook based multi-step progress bar for React</h4>
 
-> Hook based Multi step and dynamic progress indicator for react. Built using typescript, hooks and lots-o'-☕ and lots-o'-❤️ .
-> Uses CSS modules so you don't have to worry about your CSS class names clashing with ours
+<p align="center">
+  <img alt="React Stepz Demo" src="react-step-progress-demo.gif" width="60%" />
+</p>
 
-![React Step Progress demo](react-step-progress-demo.gif)
+<a href="https://www.npmjs.com/package/react-stepz">
+  <img src="https://badge.fury.io/js/react-stepz.svg" alt="npm version" height="18">
+</a>
 
 ## Install
 
