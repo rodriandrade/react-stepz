@@ -1,12 +1,12 @@
 import React from 'react';
 import invariant from 'tiny-invariant';
-import { StepProgressContext } from '../contexts/StepProgressContext';
+import { StepProgressContext } from './StepProgress';
 import styles from './styles.module.css';
 
-import { StepProgressBarProps, StepStates } from '../models';
+import { StepProgressBarProps } from '../models';
 
 export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
-  const { className, progressClass, stepClass } = props;
+  const { className, progressClass, stepClass, steps } = props;
 
   return (
     <StepProgressContext.Consumer>
@@ -16,11 +16,7 @@ export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
           'You cannot use a <StepProgressBar> outside a <StepProgess>'
         );
 
-        const { steps } = context;
-
-        if (steps === undefined) {
-          return;
-        }
+        const { currentStep, isError } = context;
 
         return (
           <div className={`${styles['progress-bar-wrapper']} ${className || ''}`}>
@@ -30,12 +26,12 @@ export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
                   <li
                     key={i}
                     className={`${styles['progress-step']}${
-                      step.state === StepStates.COMPLETED ? ` ${styles.completed} completed` : ''
-                    }${step.state === StepStates.CURRENT ? ` ${styles.current} active` : ''}${
-                      step.state === StepStates.ERROR ? ` ${styles['has-error']} error` : ''
+                      currentStep > i ? ` ${styles.completed} completed` : ''
+                    }${i === currentStep ? ` ${styles.current} active` : ''}${
+                      i === currentStep && isError ? ` ${styles['has-error']} error` : ''
                     } ${stepClass || ''}`}
                   >
-                    {step.state === StepStates.COMPLETED && (
+                    {currentStep > i && (
                       <span className={styles['step-icon']}>
                         <svg
                           width="1.5rem"
@@ -47,10 +43,8 @@ export const StepProgressBar = (props: StepProgressBarProps): JSX.Element => {
                         </svg>
                       </span>
                     )}
-                    {step.state === StepStates.ERROR && (
-                      <span className={styles['step-icon']}>!</span>
-                    )}
-                    {step.state !== StepStates.COMPLETED && step.state !== StepStates.ERROR && (
+                    {i === currentStep && isError && <span className={styles['step-icon']}>!</span>}
+                    {currentStep <= i && (!isError || i !== currentStep) && (
                       <span className={styles['step-index']}>{i + 1}</span>
                     )}
                     <span className={styles['step-label']}>{step.label}</span>

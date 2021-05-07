@@ -1,7 +1,7 @@
 import React from 'react';
 import invariant from 'tiny-invariant';
 import { StepProps } from '../models';
-import { StepProgressContext } from '../contexts/StepProgressContext';
+import { StepProgressContext } from './StepProgress';
 
 export const Step: React.FC<StepProps> = ({ step, children }): React.ReactElement => (
   <StepProgressContext.Consumer>

@@ -1,24 +1,21 @@
-export enum StepStates {
-  NOT_STARTED = 'not_started',
-  CURRENT = 'current',
-  ERROR = 'error',
-  COMPLETED = 'completed'
-}
+import React from 'react';
 
 export interface ProgressStep {
   label: string;
-  state?: StepStates;
   validator?: (payload?: any) => boolean;
 }
 
 export interface StepProgressContextProps {
   steps?: ProgressStep[];
-  currentStep?: number;
+  currentStep: number;
+  isError: boolean;
+  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface UseStepProgressOptions {
   steps: ProgressStep[];
-  startingStep: number;
+  startingStep?: number;
 }
 
 export interface UseStepProgressReturn {
@@ -31,6 +28,7 @@ export interface UseStepProgressReturn {
 export interface StepProgressProps {
   steps: ProgressStep[];
   currentStep: number;
+  isError: boolean;
 }
 
 export interface StepProgressBarProps {
@@ -38,6 +36,7 @@ export interface StepProgressBarProps {
   progressClass?: string;
   stepClass?: string;
   contentClass?: string;
+  steps: ProgressStep[];
 }
 
 export interface StepProps {
@@ -46,5 +45,5 @@ export interface StepProps {
 
 export interface ReducerAction {
   type: string;
-  payload: { index: number; state: StepStates };
+  payload: { index: number; state: StepStates; steps?: ProgressStep[] };
 }
