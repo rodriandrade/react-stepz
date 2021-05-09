@@ -1,7 +1,4 @@
 <h1 align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
   React-Stepz
 </h1>
 
@@ -20,6 +17,13 @@
 <a title='License' href="https://github.com/r-bt/react-stepz/blob/master/LICENSE">
     <img src='https://img.shields.io/badge/license-MIT-blue.svg' />
  </a>
+ 
+ <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<a title="Contributors" href="#contributors">
+  <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square">
+  </a>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+ 
 </p>
 
 ## Install
