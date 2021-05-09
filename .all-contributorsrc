@@ -14,6 +14,17 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "saini-g",
+      "name": "Gaurav Saini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50542972?v=4",
+      "profile": "https://github.com/saini-g",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
