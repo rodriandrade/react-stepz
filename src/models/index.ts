@@ -35,7 +35,6 @@ export interface StepProgressBarProps {
   className?: string;
   progressClass?: string;
   stepClass?: string;
-  contentClass?: string;
   steps: ProgressStep[];
 }
 

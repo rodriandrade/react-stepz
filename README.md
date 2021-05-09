@@ -59,8 +59,9 @@ Then you can create your steps and validation functions
 
 ```javascript
 // MyComponent.jsx
-import { withStepProgress, useStepProgress, Step, StepProgressBar}
-import { useState } from 'React';
+import { withStepProgress, useStepProgress, Step, StepProgressBar } from 'react-stepz';
+import 'react-stepz/dist/index.css';
+import { useState } from 'react';
 
 const MyComponent = () => {
   const [isValid, setIsValid] = useState(false);
@@ -77,8 +78,7 @@ const MyComponent = () => {
     },
     {
       label: 'Step 3',
-      name: 'step 3',
-      validator: step3Validator
+      name: 'step 3'
     },
     {
       label: 'Step 4',
@@ -103,12 +103,18 @@ const MyComponent = () => {
       <Step step={2}>
         <h1>Third Step</h1>
       </Step>
+      <button onClick={stepForward}>Next</button>
+      <button onClick={stepBackwards}>Back</button>
     </div>
-  )
-}
+  );
+};
 
 export default withStepProgress(MyComponent);
 ```
+
+## CodeSandbox
+
+The above example can be seen at [Code Sandbox](https://codesandbox.io/s/react-stepz-demo-43byr)
 
 ## Available Props
 
