@@ -112,15 +112,9 @@ export default withStepProgress(MyComponent);
 
 ## Available Props
 
-- startingStep (`number`) - the index of the step at which to start
-- steps (`ProgressStep[]`) - array of steps with each step containing a label, name and content
-- wrapperClass (`string`) - CSS class name for progress wrapper element
-- progressClass (`string`) - CSS class name for progress bar element
-- stepClass (`string`) - CSS class name for step indicator
-- contentClass (`string`) - CSS class name for step content element
-- buttonWrapperClass (`string`) - CSS class name for action buttons wrapper element
-- primaryBtnClass (`string`) - CSS class name for primary themed button
-- secondaryBtnClass (`string`) - CSS class name for secondary themed button
+- class (`string`) - CSS class name for the ProgressBarWrapper
+- progressClass (`string`) - CSS class name for ProgressBar
+- stepClass (`string`) - CSS class name for ProgressBar step
 
 ## Show your support
 
