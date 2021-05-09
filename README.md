@@ -34,64 +34,93 @@ npm install --save react-stepz
 
 ## Usage
 
-> **NOTE:** I'm working towards an implementation where you don't have to import the stylesheet explicitly. I feel like that's not an ideal solution. Feel free to help me out 😁
+`react-stepz` uses React Contexts to share the current step between components. You can wrap your component with a context provider directly
 
 ```javascript
-// import the progress bar
-import StepProgressBar from 'react-step-progress';
-// import the stylesheet
-import 'react-step-progress/dist/index.css';
+import { StepProgress } from 'react-stepz`;
 
-// setup the step content
-const step1Content = <h1>Step 1 Content</h1>;
-const step2Content = <h1>Step 2 Content</h1>;
-const step3Content = <h1>Step 3 Content</h1>;
+...
+return (
+  <StepProgress>
+    <MyComponent>
+  </StepProgress>
+)
+```
 
-// setup step validators, will be called before proceeding to the next step
-function step2Validator() {
-  // return a boolean
-}
+or use our `HOC` to wrap your component
 
-function step3Validator() {
-  // return a boolean
-}
+```javascript
+import { withStepProgress } from 'react-stepz';
 
-// render the progress bar
-<StepProgressBar
-  startingStep={0}
-  steps={[
+export default withStepProgress(MyComponent);
+```
+
+Then you can create your steps and validation functions
+
+```javascript
+// MyComponent.jsx
+import { withStepProgress, useStepProgress, Step, StepProgressBar}
+import { useState } from 'React';
+
+const MyComponent = () => {
+  const [isValid, setIsValid] = useState(false);
+
+  const steps = [
     {
       label: 'Step 1',
-      name: 'step 1',
-      content: step1Content
+      name: 'step 1'
     },
     {
       label: 'Step 2',
       name: 'step 2',
-      content: step2Content,
-      validator: step2Validator
+      validator: () => isValid
     },
     {
       label: 'Step 3',
       name: 'step 3',
-      content: step3Content,
       validator: step3Validator
+    },
+    {
+      label: 'Step 4',
+      name: 'step 4'
     }
-  ]}
-/>
+  ];
+
+  const { stepForward, stepBackwards, currentIndex } = useStepProgress({
+    steps,
+    startingStep: 0
+  });
+
+  return (
+    <div>
+      <StepProgressBar steps={steps} />
+      <Step step={0}>
+        <h1>First step</h1>
+      </Step>
+      <Step step={1}>
+        <h1>Second step</h1>
+      </Step>
+      <Step step={2}>
+        <h1>Third Step</h1>
+      </Step>
+    </div>
+  )
+}
+
+export default withStepProgress(MyComponent);
 ```
 
 ## Available Props
 
-* startingStep (`number`) - the index of the step at which to start
-* steps (`ProgressStep[]`) - array of steps with each step containing a label, name and content
-* wrapperClass (`string`) - CSS class name for progress wrapper element
-* progressClass (`string`) - CSS class name for progress bar element
-* stepClass (`string`) - CSS class name for step indicator
-* contentClass (`string`) - CSS class name for step content element
-* buttonWrapperClass (`string`) - CSS class name for action buttons wrapper element
-* primaryBtnClass (`string`) - CSS class name for primary themed button
-* secondaryBtnClass (`string`) - CSS class name for secondary themed button
+- startingStep (`number`) - the index of the step at which to start
+- steps (`ProgressStep[]`) - array of steps with each step containing a label, name and content
+- wrapperClass (`string`) - CSS class name for progress wrapper element
+- progressClass (`string`) - CSS class name for progress bar element
+- stepClass (`string`) - CSS class name for step indicator
+- contentClass (`string`) - CSS class name for step content element
+- buttonWrapperClass (`string`) - CSS class name for action buttons wrapper element
+- primaryBtnClass (`string`) - CSS class name for primary themed button
+- secondaryBtnClass (`string`) - CSS class name for secondary themed button
 
 ## Show your support
 
