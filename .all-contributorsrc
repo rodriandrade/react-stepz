@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "r-bt",
+      "name": "Richard Beattie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2939329?v=4",
+      "profile": "https://r-bt.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "react-stepz",
+  "projectOwner": "r-bt",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
