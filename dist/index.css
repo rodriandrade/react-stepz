@@ -1,0 +1,111 @@
+._thGid {
+  padding: 2rem;
+}
+._thGid, ._thGid * {
+  box-sizing: border-box;
+}
+._2nAfT {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+._y9pkY {
+  list-style: none;
+  position: relative;
+  text-align: center;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+._y9pkY::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  height: 3px;
+  width: 100%;
+  right: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  background: linear-gradient(to left, #e7eaf3 50%, #4db193 50%);
+	background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 200ms ease-in-out;
+}
+._y9pkY:first-child::before {
+  content: none;
+}
+._y9pkY ._3CEPH,
+._y9pkY ._1umoQ {
+  background-color: #e7eaf3;
+  color: var(--text-normal);
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+  line-height: 2.5rem;
+  display: inline-flex;
+  transform-origin: center;
+  align-items: center;
+  justify-content: center;
+}
+._3CEPH, ._1umoQ {
+  transition: background-color 250ms ease;
+}
+._y9pkY ._3tkgn {
+  color: var(--text-normal);
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+._y9pkY._4bt1T ._1umoQ {
+  background-color: #4db193;
+  color: white;
+  animation: _3d3pk 400ms ease-in-out forwards;
+}
+._y9pkY._4bt1T ._1umoQ:hover {
+  background-color: #42997f;
+}
+._y9pkY._1-LPA ._3CEPH {
+  background-color: #387cf6;
+  color: white;
+  animation: _2s0RJ 400ms ease forwards;
+}
+._y9pkY._1-LPA ._3CEPH:hover {
+  background-color: #316ddb;
+}
+._y9pkY._4bt1T::before,
+._y9pkY._1-LPA::before,
+._y9pkY._3cMiU::before {
+  background-position: left bottom;
+}
+._y9pkY._3cMiU ._1umoQ {
+  color: white;
+  background-color: #bb392d;
+  animation: _3QhsZ 350ms ease-in-out forwards;
+}
+._1Ybit {
+  padding: 1rem;
+}
+
+@keyframes _2s0RJ {
+  0% { transform: scale(1); }
+  10% { transform: scale(0.975); }
+  40% { transform: scale(1.4); }
+  50%, 100% { transform: scale(1.2); }
+}
+@keyframes _3d3pk {
+  0% { transform: scale(1.2); }
+  35%, 100% { transform: scale(1); }
+}
+@keyframes _3QhsZ {
+  0% { transform: translateX(0); }
+  15% { transform: translateX(0.2rem); }
+  30%, 60% { transform: translateX(-0.4rem); }
+  45%, 75% { transform: translateX(0.4rem); }
+  90% { transform: translateX(-0.2rem); }
+  100% { transform: translateX(0); }
+}
